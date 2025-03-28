@@ -33,7 +33,7 @@ Try the live demo:
 
 Tickles is perfect for creating interactive pages to:
 
-- **Confess your love** to someone special
+- **Confess or remind your love** to someone special
 - **Ask someone out** on a date
 - **Propose marriage** in a unique way
 - **Share a joke** with friends
