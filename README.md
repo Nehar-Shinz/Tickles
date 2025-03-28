@@ -123,7 +123,7 @@ Tickles is designed to work on both desktop and mobile devices. On touch devices
 
 | Version | Description | Link |
 |---------|-------------|------|
-| **Confession** | A sweet way to confess your love to someone special | [View Confession](https://nehar-shinz.github.io/tickles/confession.html) |
+| **Confession** | A sweet way to confess or remind your love to someone special | [View Confession](https://nehar-shinz.github.io/tickles/confession.html) |
 | **Date** | Ask someone out on a date with a playful twist | [View Date](https://nehar-shinz.github.io/tickles/date.html) |
 | **Proposal** | A unique way to pop the question | [View Proposal](https://nehar-shinz.github.io/tickles/proposal.html) |
 | **Habibi** | A luxurious invitation to visit Dubai | [View Habibi](https://nehar-shinz.github.io/tickles/habibi.html) |
