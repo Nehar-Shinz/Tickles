@@ -18,9 +18,9 @@ An interactive and playful web experience featuring a "hard-to-catch" button wit
 
 ## 🎮 Demo
 
-Try the live demos:
+Try the live demo:
 
-- [View Demo](https://nehar-shinz.github.io/tickles)
+- [View Demo](https://nehar-shinz.github.io/tickles/tickles)
 
 ## 🖼️ Screenshots
 
