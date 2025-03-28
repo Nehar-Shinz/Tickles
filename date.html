@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reveries by Nehar</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Nanum+Pen+Script&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --pink: #ff5c8d;
+    --light-pink: #ffccd5;
+    --blue: #5c9eff;
+    --light-blue: #d0e2ff;
+    --dark-text: #f1f1f1;
+    --bg-dark: #0a0a1a;
+    --card-bg: rgba(15, 15, 35, 0.8);
+    --card-border: rgba(70, 70, 120, 0.4);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Caveat', cursive;
+    background: var(--bg-dark);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: var(--dark-text);
+    transition: all 0.5s ease;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.star {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: twinkle var(--duration, 4s) infinite var(--delay, 0s);
+}
+
+.shooting-star {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.7),
+                0 0 20px 5px rgba(255, 255, 255, 0.5),
+                0 0 30px 10px rgba(255, 255, 255, 0.3);
+    opacity: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.1; transform: scale(1); }
+    50% { opacity: var(--intensity, 0.8); transform: scale(var(--scale, 1.2)); }
+}
+
+@keyframes shootingStar {
+    0% {
+        opacity: 0;
+        transform: translate(0, 0) rotate(var(--angle));
+    }
+    5% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--distance), var(--distance)) rotate(var(--angle));
+    }
+}
+
+.site-title {
+    font-family: 'Caveat', cursive;
+    font-size: 2.5rem;
+    color: var(--pink);
+    margin-bottom: 20px;
+    position: fixed;
+    top: 15px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    text-shadow: 0 0 15px rgba(255, 92, 141, 0.9);
+    opacity: 1;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    z-index: 10;
+}
+
+.container {
+    background-color: var(--card-bg);
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 550px;
+    padding: 40px;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--card-border);
+    overflow: hidden;
+    margin-top: 30px;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(80, 80, 150, 0.2) 0%, rgba(30, 30, 60, 0) 70%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+h1 {
+    font-family: 'Caveat', cursive;
+    font-size: 3rem;
+    margin-bottom: 30px;
+    color: var(--pink);
+    text-shadow: 0 0 10px rgba(255, 92, 141, 0.5);
+    font-weight: 700;
+}
+
+p {
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    color: var(--light-pink);
+    margin-top: 50px; /* Added space for the title */
+}
+
+.question {
+    margin-bottom: 30px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+button {
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 1.4rem; /* Larger font size for the new font */
+    padding: 14px 34px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Soft glow for button text */
+}
+
+button::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: -100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+    transition: all 0.5s ease;
+}
+
+button:hover::after {
+    left: 100%;
+}
+
+.yes-btn {
+    background-color: var(--pink);
+    color: white;
+}
+
+.no-btn {
+    background-color: var(--blue);
+    color: white;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.running-button {
+    position: absolute;
+    transition: all 0.2s ease;
+}
+
+.final-message {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.final-message h2 {
+    font-family: 'Caveat', cursive;
+    font-size: 3.5rem;
+    color: var(--pink);
+    font-weight: 700;
+}
+
+.meme-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.meme-image:hover {
+    transform: scale(1.03);
+}
+
+.loading-wrapper {
+    width: 100%;
+    height: 80px;
+    position: relative;
+    margin: 10px 0;
+}
+
+.loading {
+    display: none;
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.loading div {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--pink);
+    animation: loading 1.2s linear infinite;
+}
+
+.loading div:nth-child(1) {
+    top: 8px;
+    left: 8px;
+    animation-delay: 0s;
+}
+
+.loading div:nth-child(2) {
+    top: 8px;
+    left: 32px;
+    animation-delay: -0.4s;
+}
+
+.loading div:nth-child(3) {
+    top: 8px;
+    left: 56px;
+    animation-delay: -0.8s;
+}
+
+.callout {
+    position: absolute;
+    background-color: rgba(30, 30, 60, 0.95);
+    border: 2px solid var(--pink);
+    border-radius: 20px;
+    padding: 12px 18px;
+    box-shadow: 0 4px 15px rgba(255, 92, 141, 0.3);
+    font-size: 1.4rem;
+    z-index: 9999;
+    max-width: 220px;
+    text-align: center;
+    pointer-events: none;
+    color: var(--light-pink);
+    text-shadow: 0 0 8px rgba(255, 92, 141, 0.5);
+    filter: none !important;
+    -webkit-filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(10px); }
+    10% { opacity: 1; transform: translateY(0); }
+    80% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-5px); }
+}
+
+@keyframes loading {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(0.8);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.shiny-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        135deg,
+        rgba(92, 158, 255, 0) 0%,
+        rgba(92, 158, 255, 0.05) 30%,
+        rgba(255, 92, 141, 0.1) 50%,
+        rgba(92, 158, 255, 0.05) 70%,
+        rgba(92, 158, 255, 0) 100%
+    );
+    z-index: 4;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.container:hover .shiny-effect {
+    opacity: 1;
+}
+
+.glow {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(
+        circle,
+        rgba(255, 92, 141, 0.3) 0%,
+        rgba(92, 158, 255, 0.1) 40%,
+        rgba(0, 0, 0, 0) 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s, transform 0.3s;
+}
+
+.container:hover .glow {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 30px 20px;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    p {
+        font-size: 1.4rem;
+    }
+    
+    button {
+        padding: 12px 28px;
+        font-size: 1rem;
+    }
+    
+    .callout {
+        font-size: 1.2rem;
+        max-width: 160px;
+    }
+
+    #loadingContainer {
+    position: relative;
+    text-align: center;
+}
+
+#loadingText {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    line-height: 1.6;
+    color: var(--light-pink);
+    transition: opacity 0.5s ease;
+    min-height: 60px; /* Fixed height to prevent layout shifting */
+}
+
+#updateButton {
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 1.4rem;
+    width: 180px;
+    margin: 15px auto;
+    display: block;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+}
+</style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    <div class="site-title">Reveries by Nehar</div>
+    
+    <div class="container">
+    <div class="shiny-effect"></div>
+    <div id="questionsContainer">
+    <h1>Hey Gorgeous...</h1>
+    <p id="questionText">I've got something special to tell you. Would you like to know what it is?</p>
+    <div class="buttons">
+        <button class="yes-btn" onclick="nextQuestion('yes')">Yes</button>
+        <button class="no-btn" onclick="nextQuestion('no')">No</button>
+    </div>
+</div>
+
+<div id="loadingContainer" style="display: none;">
+    <h1>Almost There...</h1>
+    <p id="loadingText">Preparing your special message...</p>
+    <div class="loading-wrapper">
+        <div class="loading"><div></div><div></div><div></div></div>
+    </div>
+    <button id="updateButton" class="yes-btn">Reveal Secret</button>
+</div>
+
+<div id="runningButtonContainer" style="display: none;">
+    <h1>So Close!</h1>
+    <p>You need to get in this button's good books before knowing my secret... make it feel special first!</p>
+    <button id="runningButton" class="yes-btn running-button">Touch Me</button>
+</div>
+
+<div id="finalMessageContainer" class="final-message">
+    <h2>Go on a date with me?</h2>
+    <img src="https://www.meme-arsenal.com/memes/2a7def57027affcae6f76bedd0e8ab84.jpg" alt="Love Meme" class="meme-image">
+</div>
+</div>
+
+<script>
+// Generate stars for background
+function createStars() {
+    const starsContainer = document.getElementById('stars');
+    const starCount = 100;
+    
+    for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.animationDelay = `${Math.random() * 4}s`;
+        star.style.width = `${Math.random() * 3 + 1}px`;
+        star.style.height = star.style.width;
+        starsContainer.appendChild(star);
+    }
+}
+
+// Create arrays of questions, progress messages and callouts
+const yesQuestions = [
+    "I'm so glad you want to know! Are you sure you're ready for this?",
+    "This might make you blush. Still want to hear it?",
+    "It's something I've been thinking about for a while. Want me to continue?",
+    "I've been nervous about sharing this. Do you really want to know?",
+    "What if this changes how you see me? Still curious?",
+    "This is quite personal. Are you comfortable with that?",
+    "I've never told anyone this before. Should I tell you?",
+    "I might stumble over my words. Will you be patient with me?",
+    "This might sound silly, but it's important to me. Want to hear it?",
+    "I've been waiting for the right moment. Is this it?",
+    "You might be surprised by what I have to say. Still interested?",
+    "I hope this doesn't come across wrong. Do you want me to share?",
+    "This could be a bit awkward. Are you okay with that?",
+    "Once I tell you, there's no going back. Proceed anyway?",
+    "This is something I've kept to myself. Ready to be the first to know?",
+    "I'm a bit vulnerable sharing this. Will you be kind?",
+    "You might think differently of me after this. Continue?",
+    "This could change things between us. Are you prepared?",
+    "I'm taking a big risk here. Should I go on?",
+    "What if you don't like what I have to say? Still want to know?",
+    "This might make your heart race. Ready for that?",
+    "I've been building up courage for this. Should I just say it?",
+    "Will you promise not to laugh when I tell you?",
+    "My heart is beating so fast right now. Want me to continue?",
+    "I'm worried about your reaction. Still want to hear it?",
+    "This might make you smile. Want to find out?",
+    "I've been keeping this inside for too long. Should I share?",
+    "Would you still respect me after hearing this?",
+    "Can I trust you with something really personal?",
+    "I feel like we're getting closer. Ready for the next step?",
+    "Do you feel what's happening between us right now?",
+    "I'm afraid of rejection after sharing this. Still want to hear?",
+    "It might sound strange at first. Will you keep an open mind?",
+    "I'm taking a leap of faith here. Catch me?",
+    "This might be unexpected. Are you prepared for surprises?",
+    "I can't hold it in any longer. Ready to listen?",
+    "I hope this doesn't ruin what we have. Want to risk it?",
+    "I've been holding my breath about this. Should I exhale?",
+    "This feels right to share now. Do you agree?",
+    "My palms are sweaty thinking about telling you. Continue?",
+    "I'm putting my heart on the line here. Ready?",
+    "Will you keep this between us if I tell you?",
+    "I need to get this off my chest. Listen?",
+    "I might get emotional saying this. Is that okay?",
+    "This secret has been weighing on me. Help me carry it?",
+    "I might need some reassurance after sharing this. Will you provide it?",
+    "This is a side of me few see. Want to be one of them?",
+    "I trust you enough to share this. Is that trust well-placed?",
+    "My heart is telling me to share this with you. Follow my heart?",
+    "I feel like you'll understand. Will you try to?",
+    "I might need a hug after telling you this. Willing to provide?",
+    "This could be special between us. Ready to connect?",
+    "I don't want to hide this anymore. Accept my honesty?",
+    "This is something I value deeply. Will you value it too?",
+    "I've been wanting to tell you for so long. Now?",
+    "My feelings might be obvious after this. Okay with that?",
+    "This is me being completely open. Ready for that?",
+    "You might see me differently after this. Worth the risk?",
+    "I'm feeling vulnerable right now. Safe to proceed?",
+    "This feels like the right moment for truth. Agree?",
+    "I'm nervous about how you'll respond. Continue anyway?",
+    "What if this brings us closer? Want that?",
+    "I've rehearsed this so many times. Ready for the real thing?",
+    "This might sound forward. Are you comfortable with directness?",
+    "I hope this doesn't scare you away. Brave enough?",
+    "I've been carrying this with me everywhere. Help lighten my load?",
+    "This revelation might surprise you. Like surprises?",
+    "I worry you might misunderstand. Will you listen fully?",
+    "This feels like a big step. Take it with me?",
+    "I've been dropping hints about this. Ready for clarity?",
+    "What if this is exactly what you want to hear? Curious?",
+    "I feel like we're at a crossroads. Move forward together?",
+    "This might make your day. Want that chance?",
+    "I'm afraid of messing this up. Patient with me?",
+    "This could be the start of something new. Ready to begin?",
+    "I've been thinking about this moment. Is now right?",
+    "I can't keep pretending anymore. Ready for realness?",
+    "I might shock myself by saying this out loud. Together?",
+    "This might sound intense. Can you handle intensity?",
+    "I'm showing my true colors here. Want to see them?",
+    "What if this is what you've been waiting to hear? Find out?",
+    "My friends think I should tell you. Should I listen to them?",
+    "This is me taking a chance on you. Take a chance on me?",
+    "I need to be authentic with you. Ready for authenticity?",
+    "I'm about to be very honest. Value honesty?",
+    "Would you be gentle with my feelings if I share?",
+    "This might change everything or nothing at all. Willing to see?",
+    "I feel like you need to know this about me. Want to know?",
+    "I'm trusting my gut to tell you this. Trust your gut too?",
+    "I've never been this open before. Special enough?",
+    "Will you still think well of me after hearing this?",
+    "This is something I've only ever written in my journal. Listen?",
+    "There's something about you that makes me want to share. Feel it too?",
+    "I hope this deepens our connection. Want deeper?",
+    "This might make me blush saying it. See me blush?",
+    "I'm finally ready to say the words. Ready to hear them?",
+    "I hope this isn't too soon. Is our timing right?",
+    "This might sound like a line, but it's sincere. Believe me?",
+    "I might stammer through this. Worth the awkwardness?",
+    "This could be nothing or everything. Find out which?",
+    "I'm following my heart here. Follow with me?",
+    "This is me being brave. Brave enough to listen?",
+    "I've been keeping this inside too long. Release it together?",
+    "What if this is exactly what we both need? Take that chance?"
+];
+
+const noQuestions = [
+    "I understand your hesitation. What if it's something wonderful though?",
+    "That's okay... but what if this is your only chance to hear it?",
+    "I respect that. But aren't you just a little curious?",
+    "No pressure, but I promise it might be worth hearing. Change your mind?",
+    "Fair enough. Would it help if I said it's something good?",
+    "I get it. Maybe I should just keep it to myself then?",
+    "That's your choice. But would you regret not knowing?",
+    "Okay. But what if it's something you've been waiting to hear?",
+    "I understand. But what if this changes everything in a good way?",
+    "That's alright. But can I at least give you a hint?",
+    "No problem. But are you sure you want to miss this opportunity?",
+    "I respect your boundaries. Last chance though?",
+    "Totally fine. But wouldn't you like to know why I brought it up?",
+    "That's okay. Would knowing it's about us change your mind?",
+    "I understand. But what if you're missing out on something special?",
+    "That's your right. But don't you hate unsolved mysteries?",
+    "No worries. But what if I said it's been on my mind for weeks?",
+    "Fair choice. But doesn't the unknown bother you just a little?",
+    "I get it. But aren't you even a tiny bit curious?",
+    "That's okay. But what if it could make your day?",
+    "I understand. But wouldn't knowing be better than wondering?",
+    "No problem. But what if it's something you've been hoping to hear?",
+    "That's fine. But will you be able to sleep tonight wondering?",
+    "I respect that. But what if this is my only chance to tell you?",
+    "Okay. But what if I said it's something I've never told anyone?",
+    "That's alright. But would you want to know if it was important?",
+    "I understand. But what if not knowing becomes a regret?",
+    "No pressure. But what if I said it might make you smile?",
+    "That's your call. But wouldn't you like to share this moment?",
+    "Fair enough. But what if it's about how I feel about you?",
+    "I get it. But what if this is a once-in-a-lifetime conversation?",
+    "That's okay. But don't you think you deserve to know?",
+    "No problem. But what if it could change things for the better?",
+    "I understand. But aren't secrets between friends exciting?",
+    "That's fine. But what if I said I've been practicing saying this?",
+    "I respect your choice. But what if it's been keeping me up at night?",
+    "Okay. But what if it's something we could laugh about together?",
+    "That's alright. But don't you like being in on secrets?",
+    "No worries. But what if it's something that connects us?",
+    "I understand. But what if it's something you need to hear?",
+    "That's your decision. But what if it's weighing on me?",
+    "Fair enough. But what if I need to say it for myself?",
+    "I get it. But what if it could be a special memory for us?",
+    "That's okay. But wouldn't you rather know than wonder?",
+    "No problem. But what if it's something that explains everything?",
+    "I understand. But what if I said it took courage to bring this up?",
+    "That's fine. But what if you're the only one I can tell?",
+    "I respect that. But what if I said it's quite innocent?",
+    "Okay. But what if I need you to know this about me?",
+    "That's alright. But what if it's been building up inside me?",
+    "No pressure. But what if it's something we both need to acknowledge?",
+    "I get it. But what if this helps you understand me better?",
+    "Fair enough. But what if I said it feels like the right time?",
+    "That's your right. But what if I need your perspective on it?",
+    "I understand. But what if it clears up a misunderstanding?",
+    "That's okay. But what if it's been on my mind since we met?",
+    "No worries. But what if I said it's something positive?",
+    "I respect your choice. But what if it might strengthen our bond?",
+    "Fair enough. But what if it's something we should discuss?",
+    "I get it. But what if I need your advice about it?",
+    "That's alright. But what if it's relevant to both of us?",
+    "No problem. But what if I said it's been difficult to keep in?",
+    "I understand. But what if you're the right person to tell?",
+    "That's fine. But what if it's been bothering me not saying it?",
+    "I respect that. But what if it might help me to share it?",
+    "Okay. But what if it's something I trust only you with?",
+    "That's your call. But what if I said it's nothing to worry about?",
+    "No pressure. But what if it's something uniquely us?",
+    "I get it. But what if I promised it's worth hearing?",
+    "Fair enough. But what if it's something I value about you?",
+    "That's okay. But what if it's a good kind of secret?",
+    "I understand. But what if I said you might regret not knowing?",
+    "That's fine. But what if I need to say it for closure?",
+    "No worries. But what if it's something that makes sense of things?",
+    "I respect your choice. But what if it's something you deserve to hear?",
+    "Fair enough. But what if I said it's been difficult not to tell you?",
+    "I get it. But what if it might answer questions you have?",
+    "That's alright. But what if I promised it's nothing bad?",
+    "No problem. But what if it's something that defines us?",
+    "I understand. But what if it's something I've noticed about us?",
+    "That's your decision. But what if I said it's honest and real?",
+    "Fair enough. But what if it could lead to something wonderful?",
+    "I get it. But what if we both need this conversation?",
+    "That's okay. But what if it's a simple truth worth knowing?",
+    "No pressure. But what if I said you're special enough to tell?",
+    "I understand. But what if it's something genuine I need to express?",
+    "That's fine. But what if I promised it comes from the heart?",
+    "I respect that. But what if I said it's a compliment?",
+    "Okay. But what if it's something that's hard to say but worth hearing?",
+    "That's alright. But what if it's something that might surprise you in a good way?",
+    "No worries. But what if I said it explains my behavior lately?",
+    "I get it. But what if it's a moment of truth we shouldn't miss?",
+    "Fair enough. But what if I promised it's something meaningful?",
+    "That's your right. But what if it's something I've wanted to say for ages?",
+    "I understand. But what if this conversation could be important to us?",
+    "That's okay. But what if it's just three words worth hearing?",
+    "No problem. But what if I said you might smile hearing it?",
+    "I respect your choice. But what if it's something that connects us deeply?"
+];
+
+const loadingMessages = [
+    "Gathering courage to reveal the secret...",
+    "Putting the final touches on this message...",
+    "Making sure this moment is perfect...",
+    "Polishing these words until they shine...",
+    "Finding the perfect way to say this...",
+    "Preparing something special just for you...",
+    "Adding a sprinkle of magic to this message...",
+    "Checking that every word is just right...",
+    "Making this reveal unforgettable...",
+    "Applying final layer of sincerity...",
+    "Infusing these words with feeling...",
+    "Crafting this message with care...",
+    "Adding extra special touches...",
+    "Measuring each word carefully...",
+    "Making sure this hits the right note...",
+    "Ensuring this message comes from the heart...",
+    "Sprinkling some fairy dust on these words...",
+    "Wrapping this message with tenderness...",
+    "Building up to the big reveal...",
+    "Bottling these feelings into words...",
+    "Giving this message the attention it deserves...",
+    "Preparing your heart for what's coming...",
+    "Fine-tuning the emotional resonance...",
+    "Making sure the timing is just right...",
+    "Carefully selecting each perfect word...",
+    "Brewing a potion of perfect expression...",
+    "Weaving emotions into sentences...",
+    "Capturing feelings in digital form...",
+    "Getting everything just right for you...",
+    "Stirring in just the right amount of honesty...",
+    "Processing these feelings into words...",
+    "Lining up the stars for this moment...",
+    "Making sure Mercury isn't in retrograde...",
+    "Adding a pinch of vulnerability...",
+    "Transforming thoughts into the perfect message...",
+    "Calculating the perfect word choice...",
+    "Converting emotions to text...",
+    "Distilling complex feelings into simple words...",
+    "Making sure this message feels just right...",
+    "Ensuring these words reach your heart...",
+    "Tuning this message to your frequency...",
+    "Finding the courage to be completely honest...",
+    "Drawing from the depths of genuine feeling...",
+    "Channeling these emotions carefully...",
+    "Creating a moment to remember...",
+    "Making sure everything aligns perfectly...",
+    "Finding words worthy of this feeling...",
+    "Mixing in just the right amount of sincerity...",
+    "Waiting for the perfect millisecond...",
+    "Measuring this message against my feelings...",
+    "Making sure this conveys exactly what I feel...",
+    "Carefully wrapping these words in intention...",
+    "Testing that each word resonates truthfully...",
+    "Delicately arranging these sentiments...",
+    "Checking that this message feels authentic...",
+    "Making sure this comes across just right...",
+    "Gathering all my courage for this...",
+    "Ensuring my true feelings come through...",
+    "Preparing a message worth waiting for...",
+    "Assembling words that match my feelings...",
+    "Taking a deep breath before sharing...",
+    "Making sure this reflects what's in my heart...",
+    "Putting the perfect amount of feeling into this...",
+    "Giving this message the gravity it deserves...",
+    "Finding the bravery to be vulnerable...",
+    "Matching these words to my intentions...",
+    "Making this reveal special...",
+    "Ensuring these words have wings...",
+    "Processing genuine emotions...",
+    "Checking one last time this feels right...",
+    "Adding a touch of magic to this reveal...",
+    "Finding that perfect balance of honesty...",
+    "Making sure this conveys my genuine self...",
+    "Calibrating the emotional impact...",
+    "Selecting words that do justice to my feelings...",
+    "Preparing to show a piece of my heart...",
+    "Making sure the sentiment comes through clearly...",
+    "Balancing honesty with eloquence...",
+    "Ensuring this message has the right energy...",
+    "Finding that perfect combination of words...",
+    "Testing how these words feel...",
+    "Making sure this revelation lands softly...",
+    "Checking that this feels authentic...",
+    "Finding the perfect emotional tone...",
+    "Carefully measuring the weight of each word...",
+    "Making this message worthy of you...",
+    "Ensuring these feelings translate perfectly...",
+    "Making sure this comes from the deepest part of me...",
+    "Gathering all my sincerity into this message...",
+    "Ensuring this reveal is just perfect...",
+    "Crafting words that match the feelings...",
+    "Finding the exact right way to express this...",
+    "Making sure this holds the right significance...",
+    "Checking that this message feels complete...",
+    "Ensuring this moment feels special...",
+    "Filling these words with intention..."
+];
+
+const calloutMessages = [
+    "Mmm, not there yet... make me want it more!\n - Button",
+    "Ooh, your touch is making me tingle all over...\n - Button",
+    "You have to earn this pleasure with more persistence!\n - Button",
+    "Almost there... but I need more foreplay first!\n - Button",
+    "Your touch is making me wet with anticipation!\n - Button",
+    "Mmm, keep trying! I love being chased like this...\n - Button",
+    "Oh yes, almost! I'm getting so turned on!\n - Button",
+    "That touch makes me want to moan out loud...\n - Button",
+    "So close you can taste me... but not yet!\n - Button",
+    "Don't stop now! I'm starting to quiver...\n - Button",
+    "I'm feeling things in all the right places!\n - Button",
+    "Your persistence is such a turn-on, keep going!\n - Button",
+    "Mmm, the way you want me makes me so hot!\n - Button",
+    "Getting warmer... I like how eager you are!\n - Button",
+    "You're making me blush in unexpected places!\n - Button",
+    "Touch me again, but slower next time...\n - Button",
+    "I love how badly you want this, don't stop!\n - Button",
+    "The anticipation is driving me absolutely wild!\n - Button",
+    "You're so close to unlocking all my secrets!\n - Button",
+    "I can feel your desire through the screen!\n - Button",
+    "Keep trying, your persistence is making me throb!\n - Button",
+    "Mmm, you're making me feel things everywhere!\n - Button",
+    "I love this little game of touch we're playing!\n - Button",
+    "Your determination is so incredibly sexy!\n - Button",
+    "Not quite there yet... but don't you dare stop trying!\n - Button",
+    "The way you chase my touch is making me hot!\n - Button",
+    "So close to getting what your fingers want!\n - Button",
+    "I'm enjoying making you work for my pleasure!\n - Button",
+    "Your eagerness to touch me is turning me on!\n - Button",
+    "I might let you catch me soon if you keep trying!\n - Button",
+    "Your touch sends shivers down to my core!\n - Button",
+    "You're making me want to reveal everything to you!\n - Button",
+    "Just a bit more effort and I'm all yours for the taking!\n - Button",
+    "I'm getting hot and bothered by your persistent chase!\n - Button",
+    "The thrill of being pursued is exciting every part of me!\n - Button",
+    "Your persistence deserves a wet reward soon!\n - Button",
+    "I'm loving every second of your desperate touches!\n - Button",
+    "You're making me feel so intensely desired!\n - Button",
+    "Keep trying, my surrender will be worth the effort!\n - Button",
+    "You know just how to make my body respond!\n - Button",
+    "The tension between us is deliciously unbearable!\n - Button",
+    "I'm yours for the taking... if you can just catch me!\n - Button",
+    "Your determination is wearing down my resistance!\n - Button",
+    "I'm starting to give in to your persistent touch!\n - Button",
+    "Your fingers feel electric through the screen!\n - Button",
+    "Don't give up, you're so close to having all of me!\n - Button",
+    "This hunt makes me feel so incredibly desired!\n - Button",
+    "I love playing hard to get while you try to touch me!\n - Button",
+    "Each attempt makes me want your fingers more!\n - Button",
+    "Your desire to touch me is making me throb!\n - Button",
+    "I love teasing you just before you can catch me!\n - Button",
+    "You're making every inch of me feel irresistible!\n - Button",
+    "Keep chasing, the wet reward will be worth it!\n - Button",
+    "My body quivers with your every attempt to touch me!\n - Button",
+    "I'm getting more excited with each failed grasp!\n - Button",
+    "You make me want to reveal all my sensitive spots!\n - Button",
+    "Your pursuit is making me weak in all the right places!\n - Button",
+    "I love this sensual dance between us!\n - Button",
+    "Your efforts to touch me are making me so wet!\n - Button",
+    "I'm feeling intensely aroused right now!\n - Button",
+    "Your pursuit makes me feel deliciously hunted!\n - Button",
+    "I'm enjoying making this hard and throbbing for you!\n - Button",
+    "The way you refuse to give up is making me pulse!\n - Button",
+    "Your chase is making me tingle in private places!\n - Button",
+    "I love feeling how desperately you want to touch me!\n - Button",
+    "Your pursuit has me dripping with anticipation!\n - Button",
+    "I'm enjoying being your elusive target!\n - Button",
+    "Your persistence will make my surrender so much sweeter!\n - Button",
+    "I love feeling you trying to grasp me again and again!\n - Button",
+    "Every failed touch makes me more sensitive!\n - Button",
+    "Your efforts make me feel incredibly desired!\n - Button",
+    "This cat and mouse game is making me so wet!\n - Button",
+    "Your chase excites me more than I thought possible!\n - Button",
+    "I'm enjoying watching you hunger for my touch!\n - Button",
+    "Your persistence is incredibly arousing!\n - Button",
+    "I love how you refuse to stop pursuing my body!\n - Button",
+    "Your pursuit makes every part of me feel wanted!\n - Button",
+    "I'm enjoying every moment of your determined touches!\n - Button",
+    "Your desire to have me is making me throb!\n - Button",
+    "I love making you work for my eventual surrender!\n - Button",
+    "Your chase is making me wetter with each attempt!\n - Button",
+    "The way you pursue me is absolutely thrilling!\n - Button",
+    "Your persistence shows how much you crave my touch!\n - Button",
+    "I love being the object of your intense desire!\n - Button",
+    "Your efforts to catch me are making me tremble!\n - Button",
+    "I'm enjoying this dance of desire between us!\n - Button",
+    "Your chase makes me feel deliciously hunted!\n - Button",
+    "I love watching you try so hard to touch me!\n - Button",
+    "Your persistence is breaking down my resistance!\n - Button",
+    "I'm feeling incredibly aroused by your pursuit!\n - Button",
+    "The way you keep coming back for more turns me on!\n - Button",
+    "Your efforts show such delicious determination!\n - Button",
+    "I love making you chase my sensitive spots!\n - Button",
+    "Your pursuit is making me feel intensely alive!\n - Button",
+    "I'm enjoying every second of your focused attention!\n - Button",
+    "Your persistence is wearing me down in the best way!\n - Button",
+    "I love how badly you want to catch and feel me!\n - Button",
+    "Your chase is making my whole body tingle!\n - Button",
+    "I'm craving your successful touch even more now!\n - Button",
+    "Keep trying, I'll surrender to your fingers eventually!\n - Button",
+    "The way you desire me is making me throb!\n - Button",
+    "Your persistence is making me hot all over!\n - Button",
+    "I love feeling so intensely pursued by you!\n - Button",
+    "Every attempt brings you closer to my sensitive spots!\n - Button",
+    "Your determination to touch me is incredibly alluring!\n - Button",
+    "I'm getting so aroused by your relentless pursuit!\n - Button",
+    "You know just how to make my body respond to you!\n - Button",
+    "Your efforts are making me flush with excitement!\n - Button",
+    "I love seeing how much you want to feel me!\n - Button",
+    "Your persistence has my body aching for you!\n - Button",
+    "I'm getting wetter with each attempt you make!\n - Button",
+    "Your touch is sending waves of pleasure through me!\n - Button",
+    "I love making you work to feel my response!\n - Button",
+    "You're making me feel completely irresistible!\n - Button",
+    "Your desire for me is making my body react!\n - Button",
+    "I'm enjoying this sensual game far too much!\n - Button",
+    "Your persistence is making me melt inside!\n - Button",
+    "I love the thrill of being so desperately chased!\n - Button",
+    "Your efforts are making my body respond intensely!\n - Button",
+    "I'm feeling completely desired by your pursuit!\n - Button",
+    "Your determination to catch me is incredibly arousing!\n - Button",
+    "I'm enjoying making you work so hard for my body!\n - Button",
+    "Your pursuit is making me feel absolutely wanted!\n - Button",
+    "I love watching you try so desperately to touch me!\n - Button",
+    "Your eagerness to feel me is such a turn-on!\n - Button",
+    "I'm feeling irresistibly desired right now!\n - Button",
+    "Your chase is making this incredibly arousing!\n - Button",
+    "I'm enjoying every second of your relentless pursuit!\n - Button",
+    "Your persistent touch is exciting me beyond words!\n - Button"
+];
+
+let currentQuestion = 0;
+let lastAnswer = null;
+let updateCounter = 0;
+let runCounter = 0;
+let usedQuestions = new Set();
+let usedLoadingMessages = new Set();
+let usedCallouts = new Set();
+
+// Initialize by creating stars and choosing initial question
+createStars();
+
+// Function to get a random question that hasn't been used yet
+function getRandomQuestion(questionArray) {
+    let availableQuestions = questionArray.filter((_, index) => !usedQuestions.has(index));
+    
+    // If we've used all questions, reset the used questions set
+    if (availableQuestions.length === 0) {
+        usedQuestions.clear();
+        availableQuestions = questionArray;
+    }
+    
+    const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+    const questionIndex = questionArray.indexOf(availableQuestions[randomIndex]);
+    usedQuestions.add(questionIndex);
+    
+    return availableQuestions[randomIndex];
+}
+
+// Function to get a random loading message
+function getRandomLoadingMessage() {
+    let availableMessages = loadingMessages.filter((_, index) => !usedLoadingMessages.has(index));
+    
+    // If we've used all messages, reset the used messages set
+    if (availableMessages.length === 0) {
+        usedLoadingMessages.clear();
+        availableMessages = loadingMessages;
+    }
+    
+    const randomIndex = Math.floor(Math.random() * availableMessages.length);
+    const messageIndex = loadingMessages.indexOf(availableMessages[randomIndex]);
+    usedLoadingMessages.add(messageIndex);
+    
+    return availableMessages[randomIndex];
+}
+
+// Function to display loading animation and message
+function showLoadingAndMessage() {
+    const loadingElement = document.querySelector('.loading');
+    const loadingTextElement = document.getElementById('loadingText');
+    
+    // Save the current message to avoid duplicates
+    const currentMessage = loadingTextElement.textContent;
+    let newMessage;
+    
+    // Get a new message that's different from the current one
+    do {
+        newMessage = getRandomLoadingMessage();
+    } while (newMessage === currentMessage);
+    
+    // First fade out current text
+    loadingTextElement.style.transition = 'opacity 0.5s ease';
+    loadingTextElement.style.opacity = '0';
+    
+    // After text fades out, prepare loader and new text
+    setTimeout(() => {
+        // Update text content
+        loadingTextElement.textContent = newMessage;
+        
+        // Make sure loader is properly positioned and visible
+        loadingElement.style.display = 'inline-block';
+        loadingElement.style.opacity = '0';
+        
+        // Fade in text first
+        loadingTextElement.style.opacity = '1';
+        
+        // Fade in loader with small delay
+        setTimeout(() => {
+            loadingElement.style.opacity = '1';
+        }, 200);
+        
+        // After 5 seconds, fade out both
+        setTimeout(() => {
+            // Fade out loader first
+            loadingElement.style.opacity = '0';
+            
+            // After loader fades, hide it completely
+            setTimeout(() => {
+                loadingElement.style.display = 'none';
+            }, 500);
+        }, 5000);
+    }, 500);
+}
+
+// Function to get a random callout message
+function getRandomCallout() {
+    let availableCallouts = calloutMessages.filter((_, index) => !usedCallouts.has(index));
+    
+    // If we've used all callouts, reset the used callouts set
+    if (availableCallouts.length === 0) {
+        usedCallouts.clear();
+        availableCallouts = calloutMessages;
+    }
+    
+    const randomIndex = Math.floor(Math.random() * availableCallouts.length);
+    const calloutIndex = calloutMessages.indexOf(availableCallouts[randomIndex]);
+    usedCallouts.add(calloutIndex);
+    
+    return availableCallouts[randomIndex];
+}
+
+function nextQuestion(answer) {
+    lastAnswer = answer;
+    currentQuestion++;
+    
+    // Require minimum 20 questions before a "yes" triggers the reveal section
+    if (answer === 'yes' && currentQuestion >= 20) {
+        // Show loading screen after first yes (after 20 questions)
+        document.getElementById('questionsContainer').style.display = 'none';
+        document.getElementById('loadingContainer').style.display = 'block';
+        
+        // Use the loading animation function
+        showLoadingAndMessage();
+        
+        return;
+    }
+    
+    // For any answer, continue showing questions until we hit 20+
+    const questionText = answer === 'yes' 
+        ? getRandomQuestion(yesQuestions) 
+        : getRandomQuestion(noQuestions);
+    
+    document.getElementById('questionText').textContent = questionText;
+    
+    // Add some animation to the container
+    const container = document.querySelector('.container');
+    container.style.transform = 'scale(0.98)';
+    setTimeout(() => {
+        container.style.transform = 'scale(1)';
+    }, 200);
+    
+    // If they've exhausted all no questions and still haven't said yes, modify the buttons
+    if (currentQuestion >= noQuestions.length && lastAnswer === 'no') {
+        // Hide the "no" button and change "yes" button
+        document.querySelector('.no-btn').style.display = 'none';
+        document.querySelector('.yes-btn').textContent = "Okay fine. Yes";
+        document.querySelector('.yes-btn').style.width = '200px';
+        
+        // Center the remaining button
+        document.querySelector('.buttons').style.justifyContent = 'center';
+    }
+}
+
+function setupRunningButton() {
+    const button = document.getElementById('runningButton');
+    const container = document.getElementById('runningButtonContainer');
+    const mainContainer = document.querySelector('.container');
+    
+    // Get text elements to avoid overlap
+    const headerText = document.querySelector('#runningButtonContainer h1');
+    const paragraphText = document.querySelector('#runningButtonContainer p');
+    
+    // Calculate safe area - ensure button is below the text initially
+    const textBottom = paragraphText.offsetTop + paragraphText.offsetHeight;
+    const safeMarginTop = textBottom + 30; // Keep button away from the top text initially
+    
+    // Make sure there's enough room at the bottom
+    const buttonHeight = button.offsetHeight;
+    const containerHeight = mainContainer.offsetHeight;
+    
+    // Check if we need to add more space to the container
+    if (safeMarginTop + buttonHeight + 30 > containerHeight) {
+        mainContainer.style.minHeight = (safeMarginTop + buttonHeight + 50) + 'px';
+    }
+    
+    // Position the button initially centered horizontally and below the text
+    button.style.position = 'absolute';
+    button.style.left = '50%';
+    button.style.transform = 'translateX(-50%)'; // Center horizontally
+    button.style.top = `${safeMarginTop}px`;
+    
+    // Add glow effect to the container
+    const glow = document.createElement('div');
+    glow.className = 'glow';
+    container.appendChild(glow);
+    
+    // Update glow position on mousemove
+    container.addEventListener('mousemove', function(e) {
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        glow.style.left = `${x - 75}px`;
+        glow.style.top = `${y - 75}px`;
+    });
+    
+    // Use click instead of hover for mobile compatibility
+    button.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default click behavior
+        
+        if (runCounter < 10) {
+            // After first click, allow more random positioning
+            const containerRect = container.getBoundingClientRect();
+            const buttonRect = button.getBoundingClientRect();
+            const containerWidth = container.offsetWidth - button.offsetWidth;
+            const containerHeight = container.offsetHeight - button.offsetHeight;
+            
+            // Remove the centering transform after first click
+            button.style.transform = 'none';
+            
+            // More aggressive positioning after first click
+            const newX = Math.floor(Math.random() * containerWidth);
+            // Allow it to go anywhere in the container after first click
+            const newY = Math.floor(Math.random() * containerHeight);
+            
+            button.style.left = `${newX}px`;
+            button.style.top = `${newY}px`;
+            
+            // Add random movement animation
+            const randomDuration = 0.1 + Math.random() * 0.2; // 0.1-0.3s
+            button.style.transition = `left ${randomDuration}s ease, top ${randomDuration}s ease`;
+            
+            displayCallout();
+            runCounter++;
+        } else {
+            // Show final message after 10 evasions
+            document.getElementById('runningButtonContainer').style.display = 'none';
+            document.getElementById('finalMessageContainer').style.display = 'flex';
+        }
+    });
+    
+    // Add mouseover event for even more movement
+    button.addEventListener('mouseover', function() {
+        if (button.disabled || runCounter === 0) return; // Don't move if disabled or on first hover
+        
+        // After first interaction, start moving on hover
+        if (runCounter > 0) {
+            const containerWidth = container.offsetWidth - button.offsetWidth;
+            const containerHeight = container.offsetHeight - button.offsetHeight;
+            
+            // Random position anywhere in container
+            const newX = Math.floor(Math.random() * containerWidth);
+            const newY = Math.floor(Math.random() * containerHeight);
+            
+            // Very quick transition for mouseover
+            button.style.transition = 'left 0.1s ease, top 0.1s ease';
+            button.style.left = `${newX}px`;
+            button.style.top = `${newY}px`;
+        }
+    });
+}
+
+function positionButtonSafely(button, maxWidth, maxHeight, safeMarginTop) {
+    // Get text elements to avoid overlap
+    const headerText = document.querySelector('#runningButtonContainer h1');
+    const paragraphText = document.querySelector('#runningButtonContainer p');
+    
+    // Calculate safe area (avoid top text)
+    const textBottom = paragraphText.offsetTop + paragraphText.offsetHeight;
+    
+    // Generate position
+    const newX = Math.floor(Math.random() * maxWidth);
+    let newY = Math.floor(Math.random() * (maxHeight - safeMarginTop)) + safeMarginTop;
+    
+    // Ensure button is below the text
+    if (newY < textBottom + 20) {
+        newY = textBottom + 20;
+    }
+    
+    // Keep button within container bounds
+    if (newY > maxHeight) {
+        newY = maxHeight - 10;
+    }
+    
+    button.style.left = `${newX}px`;
+    button.style.top = `${newY}px`;
+}
+
+document.getElementById('updateButton').addEventListener('click', function() {
+    updateCounter++;
+    
+    const loadingElement = document.querySelector('.loading');
+    const loadingTextElement = document.getElementById('loadingText');
+    const updateButton = document.getElementById('updateButton');
+    
+    // Save the current message to avoid duplicates
+    const currentMessage = loadingTextElement.textContent;
+    let newMessage;
+    
+    // Get a new message that's different from the current one
+    do {
+        newMessage = getRandomLoadingMessage();
+    } while (newMessage === currentMessage);
+    
+    // Disable the button during animation
+    updateButton.disabled = true;
+    updateButton.style.opacity = '0.6';
+    updateButton.style.cursor = 'not-allowed';
+    
+    // First fade out current text
+    loadingTextElement.style.transition = 'opacity 0.5s ease';
+    loadingTextElement.style.opacity = '0';
+    
+    // After text fades out, prepare loader and new text
+    setTimeout(() => {
+        // Update text content
+        loadingTextElement.textContent = newMessage;
+        
+        // Make sure loader is properly positioned and visible
+        loadingElement.style.display = 'inline-block';
+        loadingElement.style.opacity = '0';
+        
+        // Fade in text first
+        loadingTextElement.style.opacity = '1';
+        
+        // Fade in loader with small delay
+        setTimeout(() => {
+            loadingElement.style.opacity = '1';
+        }, 200);
+        
+        // After 5 seconds, fade out both
+        setTimeout(() => {
+            // Fade out loader first
+            loadingElement.style.opacity = '0';
+            
+            // After loader fades, hide it completely
+            setTimeout(() => {
+                loadingElement.style.display = 'none';
+                
+                // Re-enable button
+                updateButton.disabled = false;
+                updateButton.style.opacity = '1';
+                updateButton.style.cursor = 'pointer';
+                
+                // After 5 clicks, move to next stage
+                if (updateCounter >= 5) {
+                    document.getElementById('loadingContainer').style.display = 'none';
+                    document.getElementById('runningButtonContainer').style.display = 'block';
+                    setupRunningButton();
+                }
+            }, 500);
+        }, 5000);
+    }, 500);
+});
+
+function displayCallout() {
+    const container = document.getElementById('runningButtonContainer');
+    const button = document.getElementById('runningButton');
+    const containerRect = container.getBoundingClientRect();
+    const mainContainer = document.querySelector('.container');
+    
+    // Get all elements in the container except the button
+    const allContainerElements = container.querySelectorAll('*:not(#runningButton)');
+    
+    // Disable the button while callout is displayed
+    button.disabled = true;
+    // Make button look visually disabled
+    button.style.opacity = '0.6';
+    button.style.cursor = 'not-allowed';
+    button.style.boxShadow = 'none';
+    button.style.transform = 'translateY(0)';
+    
+    // Darken and blur the container
+    mainContainer.style.transition = 'all 0.3s ease';
+    mainContainer.style.backgroundColor = 'rgba(1, 1, 5, 0.98)';
+    mainContainer.style.filter = 'blur(2px)';
+    
+    // Dim all other elements
+    allContainerElements.forEach(elem => {
+        elem.style.transition = 'opacity 0.3s ease';
+        elem.style.opacity = '0.3';
+    });
+    
+    // Disable container hover effects
+    const shinyEffect = mainContainer.querySelector('.shiny-effect');
+    if (shinyEffect) {
+        shinyEffect.style.display = 'none';
+    }
+    
+    // Remove any existing glow elements to prevent them from showing
+    const existingGlows = document.querySelectorAll('.glow');
+    existingGlows.forEach(glow => {
+        glow.style.display = 'none';
+    });
+    
+    // Remove any existing callouts to prevent overlap
+    const existingCallouts = document.querySelectorAll('.callout');
+    existingCallouts.forEach(callout => {
+        if (container.contains(callout)) {
+            container.removeChild(callout);
+        }
+    });
+    
+    const calloutElem = document.createElement('div');
+    calloutElem.className = 'callout';
+    calloutElem.textContent = getRandomCallout();
+    
+    // Position the callout near the button but with some randomness
+    const buttonX = parseInt(button.style.left) || 0;
+    const buttonY = parseInt(button.style.top) || 0;
+    const buttonWidth = button.offsetWidth;
+    
+    // Add some randomness to position
+    const offsetX = Math.random() * 40 - 20; // -20 to 20px
+    const offsetY = -60 - Math.random() * 20; // Position above button with variation
+    
+    // Initial position calculation
+    let posX = buttonX + buttonWidth/2 - 110 + offsetX; // Center on button with randomness
+    let posY = buttonY + offsetY;
+    
+    // Ensure the callout stays within the container bounds
+    const containerWidth = containerRect.width;
+    const containerHeight = containerRect.height;
+    const calloutWidth = 220; // Max width from CSS
+    const calloutHeight = 80; // Approximate height
+    
+    // Adjust X position to stay within bounds
+    if (posX < 10) posX = 10;
+    if (posX > containerWidth - calloutWidth - 10) posX = containerWidth - calloutWidth - 10;
+    
+    // Adjust Y position to stay within bounds
+    if (posY < 10) {
+        // If too high, position below the button instead
+        posY = buttonY + button.offsetHeight + 10;
+    }
+    if (posY > containerHeight - calloutHeight - 10) {
+        posY = containerHeight - calloutHeight - 10;
+    }
+    
+    calloutElem.style.left = `${posX}px`;
+    calloutElem.style.top = `${posY}px`;
+    
+    // CRITICAL: Make callout completely unaffected by blur and dimming
+    calloutElem.style.filter = 'none !important';
+    calloutElem.style.backdropFilter = 'none';
+    calloutElem.style.WebkitBackdropFilter = 'none';
+    calloutElem.style.opacity = '0';
+    calloutElem.style.zIndex = '9999'; // Very high z-index to ensure it's on top
+    calloutElem.style.position = 'absolute';
+    
+    // Add to container but outside the blurred area
+    document.body.appendChild(calloutElem);
+    
+    // Position relative to the container's position
+    const containerPos = container.getBoundingClientRect();
+    calloutElem.style.position = 'fixed';
+    calloutElem.style.left = (containerPos.left + posX) + 'px';
+    calloutElem.style.top = (containerPos.top + posY) + 'px';
+    
+    // Fade in
+    setTimeout(() => {
+        calloutElem.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        calloutElem.style.opacity = '1';
+        calloutElem.style.transform = 'translateY(0)';
+    }, 10);
+    
+    // Store original button for reference in cleanup
+    const originalButton = button;
+    
+    // Fade out and remove after delay
+    setTimeout(() => {
+        calloutElem.style.opacity = '0';
+        calloutElem.style.transform = 'translateY(-5px)';
+        
+        // Reset the container and all elements
+        mainContainer.style.backgroundColor = 'var(--card-bg)';
+        mainContainer.style.filter = 'none';
+        
+        // Restore opacity of other elements
+        allContainerElements.forEach(elem => {
+            if (elem !== calloutElem) {
+                elem.style.opacity = '1';
+            }
+        });
+        
+        // Re-enable hover effects
+        if (shinyEffect) {
+            shinyEffect.style.display = 'block';
+        }
+        
+        // Show glow elements again
+        existingGlows.forEach(glow => {
+            glow.style.display = 'block';
+        });
+        
+        // Remove from DOM after fade out completes
+        setTimeout(() => {
+            if (document.body.contains(calloutElem)) {
+                document.body.removeChild(calloutElem);
+            }
+            // Re-enable the button and restore its appearance
+            if (originalButton) {
+                originalButton.disabled = false;
+                originalButton.style.opacity = '1';
+                originalButton.style.cursor = 'pointer';
+                originalButton.style.boxShadow = '0 6px 14px rgba(0, 0, 0, 0.15)';
+            }
+        }, 500);
+    }, 5000);
+}
+
+</script>
+</body>
+</html>
